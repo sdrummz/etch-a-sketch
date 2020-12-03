@@ -1,7 +1,11 @@
 'use strict';
 
 const gridContainer = document.querySelector('.grid-container');
-let gridSize = 25;
+const slider = document.querySelector('.slider')
+let sliderValue = document.querySelector('.slider').value;
+
+const defaultGridSize = sliderValue;
+let gridSize = defaultGridSize;
 
 // function to create the grid
 function createGrid(gridSize) {
@@ -17,6 +21,12 @@ function createGrid(gridSize) {
 
 }
 
+slider.addEventListener('input', function() {
+    sliderValue = slider.value;
+    gridContainer.innerHTML = "";
+    createGrid(sliderValue);
 
+})
 
+console.log(gridSize)
 createGrid(gridSize);
