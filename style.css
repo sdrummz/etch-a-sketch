@@ -12,6 +12,6 @@
   grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
-.grid-divs {
+.boxes {
   border: 0.5px solid rgba(0, 0, 0, 0.1);
 }
