@@ -10,54 +10,66 @@ function createGrid(size) {
     gridContainer.style.setProperty('--grid-rows', size);
     gridContainer.style.setProperty('--grid-cols', size);
     for (let i = 0; i < (size * size); i++) {
-        let div = document.createElement('div');
-        div.addEventListener('mouseover', function() {
-            div.style.backgroundColor = switchColor();
-        })
+        const div = document.createElement('div');
+        div.addEventListener('mouseover', switchColor)
         gridContainer.appendChild(div).className = 'boxes';
     }
 
 }
 
 // color switching function and buttons
-let boxes = document.getElementsByClassName('boxes');
+const boxes = document.getElementsByClassName('boxes');
 function switchColor() {
     if (boxColor === 'black' || boxColor === 'white') {
-        for (let i = 0; i < boxes.length; i++) {
-            boxes[i].addEventListener('mouseover', function() {
-                this.style.backgroundColor = boxColor;
-            })
-        }
+        this.style.backgroundColor = boxColor;
     } else if (boxColor === 'random-color') {
-        for (let i = 0; i < boxes.length; i++) {
-            boxes[i].addEventListener('mouseover', function() {
-                this.style.backgroundColor = randomColor();
-            })
+        this.style.backgroundColor = randomColor();
+    } else if (boxColor === 'darken') {
+        if (!this.style.backgroundColor.match(/rgba/)) {
+            this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        } else if (this.style.backgroundColor.match(/rgba/)) {
+            let opacity = parseFloat(this.style.backgroundColor.split(',')[3]);
+            if (opacity < 0.9) {
+                this.style.backgroundColor = `rgba(0, 0, 0, ${opacity + 0.1})`;
+                console.log(opacity + 0.1)
+            } else if (opacity > 0.9) {
+                this.style.backgroundColor = 'rgba(0, 0, 0, 1)';
+            }
         }
+    } else if (boxColor === 'input-color') {
+        this.style.backgroundColor = inputColor.value;
     }
 }
 
-let black = document.querySelector('.black');
+const black = document.querySelector('.black');
 black.addEventListener('click', function() {
     boxColor = 'black';
-    switchColor();
 })
 
-let eraser = document.querySelector('.eraser');
+const eraser = document.querySelector('.eraser');
 eraser.addEventListener('click', function() {
     boxColor = 'white';
-    switchColor();
 })
 
-let random = document.querySelector('.random');
+const random = document.querySelector('.random');
 random.addEventListener('click', function() {
     boxColor = 'random-color';
-    switchColor();
+    
 })
 
 function randomColor() {
     return '#' + Math.floor(Math.random()*16777215).toString(16);
 }
+
+const darken = document.querySelector('.darken');
+darken.addEventListener('click', function() {
+    boxColor = 'darken';
+})
+
+const inputColor = document.getElementById('input-color');
+inputColor.addEventListener('click', function() {
+    boxColor = 'input-color';
+})
 
 
 
@@ -65,6 +77,7 @@ function randomColor() {
 slider.addEventListener('input', function() {
     size = slider.value;
     gridContainer.innerHTML = "";
+    document.querySelector('.slide-value').innerHTML = size;
     createGrid(size);
 
 })

@@ -4,18 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Etch-a-Sketch</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="grid-container"></div>
-    <div class=>
+    <div class="title">Etch-a-Sketch</div>
+    <div class="btns">
       <button class="black">Black</button>
       <button class="random">Random</button>
+      <button class="darken">Darken</button>
+      <div class="pick-color">
+        <input type="color" value="" id="input-color" />
+        <p>choose</p>
+      </div>
       <button class="eraser">Eraser</button>
     </div>
-    <div class="slidecontainer">
+    <div class="grid-container"></div>
+    <div class="slide-container">
       <button class="reset">Reset</button>
       <input type="range" min="4" max="100" value="25" class="slider" />
+      <p class="slide-value">25</p>
     </div>
 
     <script src="script.js"></script>
