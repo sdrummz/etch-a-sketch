@@ -4,4 +4,4 @@ Simple etch-a-sketch project to showcase html, CSS, and Javascipt/DOM manipulati
 
 # Live Demo
 
-https://szglabs.github.io/etch-a-sketch/
+https://sdrummz.github.io/etch-a-sketch/
